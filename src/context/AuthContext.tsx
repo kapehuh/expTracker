@@ -16,18 +16,27 @@ export const useAuth = (): AuthContextType => {
   return context;
 };
 
-export const AuthProvider = ({ children }: { children: ReactNode }) => {
+export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
       setCurrentUser(user);
       setLoading(false);
     });
     return unsubscribe;
   }, []);
 
+  // ✅ эффект для отладки
+  useEffect(() => {
+    if (currentUser) {
+      console.log('👤 Текущий пользователь (AuthProvider):', currentUser.email, currentUser.uid);
+    } else {
+      console.log('👤 Пользователь не авторизован');
+    }
+  }, [currentUser]);
+  
   const value = { currentUser };
 
   return (

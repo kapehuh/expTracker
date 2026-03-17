@@ -6,6 +6,7 @@ import {
   type AuthError,
 } from 'firebase/auth';
 import styles from './AuthForm.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const AuthForm: React.FC = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -13,6 +14,7 @@ const AuthForm: React.FC = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   // Обработчики изменений полей
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value);
@@ -57,11 +59,12 @@ const AuthForm: React.FC = () => {
       if (isLogin) {
         // Вход
         await signInWithEmailAndPassword(auth, email, password);
+        navigate('/dashboard');
         console.log('Успешный вход');
-        // Здесь можно перенаправить пользователя, например, с помощью useNavigate()
       } else {
         // Регистрация
         await createUserWithEmailAndPassword(auth, email, password);
+        navigate('/dashboard');
         console.log('Успешная регистрация');
       }
     } catch (err) {
