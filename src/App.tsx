@@ -1,9 +1,8 @@
-import './App.css'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useAuth } from './context/AuthContext';
 import LoginPage from './pages/LoginPage';
 import Dashboard from './pages/Dashboard';
-
+import Reports from './pages/Reports';
 import { PrivateRoute } from './components/PrivateRoute';
 
 function App() {
@@ -24,6 +23,11 @@ function App() {
         } />
         {/* Редирект с корня на логин (или дашборд, если уже залогинен) */}
         <Route path="/" element={<Navigate to={currentUser ? "/dashboard" : "/login"} replace />} />
+        <Route path="/reports" element={
+        <PrivateRoute>
+          <Reports />
+        </PrivateRoute>
+      } />
       </Routes>
     </BrowserRouter>
   );

@@ -1,0 +1,297 @@
+/* Dashboard.module.css */
+
+.dashboard {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #2d3748;
+  background-color: #f7fafc;
+  min-height: 100vh;
+}
+
+/* Шапка */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding: 15px 20px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.header h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+  color: #1a202c;
+}
+
+.header button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.header button:first-of-type {
+  background-color: #edf2f7;
+  color: #4a5568;
+  margin-left: 15px;
+}
+
+.header button:first-of-type:hover {
+  background-color: #e2e8f0;
+}
+
+.header button:last-of-type {
+  background-color: #4299e1;
+  color: white;
+}
+
+.header button:last-of-type:hover {
+  background-color: #3182ce;
+}
+
+.header button:active {
+  transform: scale(0.98);
+}
+
+/* Секция бюджета */
+.budgetSection {
+  background: white;
+  border-radius: 20px;
+  padding: 25px;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
+  border: 1px solid #e2e8f0;
+}
+
+.budgetSection h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 0 0 20px 0;
+  color: #2d3748;
+}
+
+.budgetInfo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 25px;
+  background: #f8fafc;
+  padding: 18px;
+  border-radius: 14px;
+}
+
+.budgetInfo p {
+  margin: 0;
+  font-size: 1rem;
+  color: #4a5568;
+}
+
+.budgetInfo p strong {
+  color: #2d3748;
+  font-weight: 600;
+}
+
+.budgetInfo button {
+  padding: 8px 16px;
+  background: #edf2f7;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  color: #2c5282;
+  cursor: pointer;
+  transition: all 0.2s;
+  justify-self: start;
+}
+
+.budgetInfo button:hover {
+  background: #e2e8f0;
+  color: #1e3a8a;
+}
+
+/* Планы по категориям */
+.categoryPlans {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.categoryPlans > div {
+  background: #f7fafc;
+  padding: 12px 15px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  font-size: 0.95rem;
+}
+
+.categoryPlans span:first-child {
+  font-weight: 600;
+  color: #2d3748;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.categoryPlans span:nth-child(2) {
+  color: #2b6cb0;
+  font-weight: 500;
+}
+
+.categoryPlans span:last-child {
+  color: #2d3748;
+  font-weight: 500;
+  margin-left: 5px;
+}
+
+/* Форма добавления расхода */
+.addExpenseSection {
+  background: white;
+  border-radius: 20px;
+  padding: 25px;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
+  border: 1px solid #e2e8f0;
+}
+
+.addExpenseSection h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 0 20px 0;
+  color: #2d3748;
+}
+
+/* Последние расходы */
+.recentExpensesSection {
+  background: white;
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
+  border: 1px solid #e2e8f0;
+}
+
+.recentExpensesSection h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 0 20px 0;
+  color: #2d3748;
+}
+
+.expensesTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.expensesTable th {
+  text-align: left;
+  padding: 12px 10px;
+  background: #f8fafc;
+  font-weight: 600;
+  color: #4a5568;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.expensesTable td {
+  padding: 12px 10px;
+  border-bottom: 1px solid #edf2f7;
+  color: #2d3748;
+}
+
+.expensesTable tbody tr:hover {
+  background-color: #fafdff;
+  cursor: pointer;
+}
+
+.expensesTable td:last-child {
+  text-align: center;
+}
+
+.expensesTable button {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 5px 8px;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.expensesTable button:hover {
+  background: #fed7d7;
+  color: #c53030;
+}
+
+/* Модальное окно */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modalContent {
+  background: white;
+  border-radius: 24px;
+  max-width: 500px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 30px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.modalContent h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 0 0 20px 0;
+  color: #1a202c;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .dashboard {
+    padding: 10px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .header div:first-child {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .budgetInfo {
+    grid-template-columns: 1fr;
+  }
+
+  .categoryPlans {
+    grid-template-columns: 1fr;
+  }
+
+  .expensesTable th,
+  .expensesTable td {
+    padding: 8px 6px;
+    font-size: 0.85rem;
+  }
+}
