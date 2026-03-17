@@ -1,9 +1,11 @@
 import React from 'react';
 import AuthForm from '../components/AuthForm';
+import styles from './LoginPage.module.css';
 
 const LoginPage: React.FC = () => {
   return (
-    <div style={{ maxWidth: 400, margin: '0 auto', padding: 20 }}>
+    <div className={styles.container}>
+      <h1 className={styles.title}>Добро пожаловать!</h1>
       <AuthForm />
     </div>
   );

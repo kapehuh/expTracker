@@ -3,8 +3,9 @@ import { auth } from '../firebase';
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
-  AuthError,
+  type AuthError,
 } from 'firebase/auth';
+import styles from './AuthForm.module.css';
 
 const AuthForm: React.FC = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -91,40 +92,43 @@ const AuthForm: React.FC = () => {
   };
 
   return (
-    <div className="auth-form">
-      <h2>{isLogin ? 'Вход' : 'Регистрация'}</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email:</label>
+    <div className={styles.authContainer}>
+      <h2 className={styles.title}>{isLogin ? 'Вход' : 'Регистрация'}</h2>
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <div className={styles.field}>
+          <label className={styles.label}>Email:</label>
           <input
             type="email"
+            className={styles.input}
             value={email}
             onChange={handleEmailChange}
             required
           />
         </div>
-        <div>
-          <label>Пароль:</label>
+        <div className={styles.field}>
+          <label className={styles.label}>Пароль:</label>
           <input
             type="password"
+            className={styles.input}
             value={password}
             onChange={handlePasswordChange}
             required
           />
         </div>
         {!isLogin && (
-          <div>
-            <label>Подтверждение пароля:</label>
+          <div className={styles.field}>
+            <label className={styles.label}>Подтверждение пароля:</label>
             <input
               type="password"
+              className={styles.input}
               value={confirmPassword}
               onChange={handleConfirmPasswordChange}
               required
             />
           </div>
         )}
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        <button type="submit">{isLogin ? 'Войти' : 'Зарегистрироваться'}</button>
+        {error && <p className={styles.error}>{error}</p>}
+        <button type="submit" className={styles.button}>{isLogin ? 'Войти' : 'Зарегистрироваться'}</button>
       </form>
       <p>
         {isLogin ? 'Нет аккаунта? ' : 'Уже есть аккаунт? '}
