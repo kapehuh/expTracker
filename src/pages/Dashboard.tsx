@@ -99,6 +99,7 @@ const Dashboard: React.FC = () => {
 
   // Редактирование расхода
   const handleUpdateExpense = async (data: { amount: number; category: Category; description: string; date: string }) => {
+    if (!currentUser) return;
     if (!editingExpense) return;
     try {
       await updateExpense(editingExpense.id, data);
@@ -115,6 +116,7 @@ const Dashboard: React.FC = () => {
 
   // Удаление расхода
   const handleDeleteExpense = async (expenseId: string) => {
+    if (!currentUser) return;
     if (!window.confirm('Удалить расход?')) return;
     try {
       await deleteExpense(expenseId);

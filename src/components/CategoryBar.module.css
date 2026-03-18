@@ -1,0 +1,53 @@
+.categoryRow {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.categoryLabel {
+  width: 150px;
+  font-weight: 500;
+}
+
+.barContainer {
+  flex: 1;
+  height: 30px;
+  background-color: #f0f0f0;
+  border-radius: 15px;
+  overflow: hidden;
+  position: relative;
+}
+
+.planBar {
+  height: 100%;
+  background-color: #e0e0e0; /* светло-серый фон для плана */
+  position: relative;
+}
+
+.actualBar {
+  height: 100%;
+  background: linear-gradient(90deg, #4caf50, #8bc34a); /* зелёный градиент */
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.excessBar {
+  height: 100%;
+  background: linear-gradient(90deg, #f44336, #d32f2f); /* красный градиент */
+  position: absolute;
+  top: 0;
+}
+
+.excessBarFull {
+  height: 100%;
+  background: linear-gradient(90deg, #f44336, #d32f2f);
+  border-radius: 15px;
+}
+
+.numbers {
+  min-width: 120px;
+  text-align: right;
+  font-family: monospace;
+}
