@@ -39,7 +39,7 @@ describe('AuthForm', () => {
   });
 
   it('вызывает signIn при успешном входе', async () => {
-    (signInWithEmailAndPassword as jest.Mock).mockResolvedValueOnce({});
+    vi.mocked(signInWithEmailAndPassword).mockResolvedValueOnce({user: {} } as any);
     render(<AuthForm />, { wrapper: BrowserRouter });
 
     fireEvent.change(screen.getByLabelText(/email/i), { target: { value: 'test@test.com' } });
