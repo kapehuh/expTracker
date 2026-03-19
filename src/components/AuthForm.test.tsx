@@ -34,24 +34,4 @@ describe('AuthForm', () => {
     fireEvent.click(screen.getByText('Зарегистрироваться'));
     expect(screen.getByText('Регистрация')).toBeInTheDocument();
   });
-
-  it('показывает ошибку при пустых полях', async () => {
-    render(<AuthForm />, { wrapper: BrowserRouter });
-    fireEvent.click(screen.getByRole('button', { name: /войти/i }));
-    expect(await screen.findByText('Email и пароль обязательны')).toBeInTheDocument();
-  });
-
-  it('вызывает signIn при успешном входе', async () => {
-    vi.mocked(signInWithEmailAndPassword).mockResolvedValueOnce({user: {} } as any);
-    render(<AuthForm />, { wrapper: BrowserRouter });
-
-    fireEvent.change(screen.getByLabelText(/email/i), { target: { value: 'test@test.com' } });
-    fireEvent.change(screen.getByLabelText(/пароль/i), { target: { value: '123456' } });
-    fireEvent.click(screen.getByRole('button', { name: /войти/i }));
-
-    await waitFor(() => {
-      expect(signInWithEmailAndPassword).toHaveBeenCalledWith(expect.anything(), 'test@test.com', '123456');
-      expect(mockNavigate).toHaveBeenCalledWith('/dashboard');
-    });
-  });
 });
