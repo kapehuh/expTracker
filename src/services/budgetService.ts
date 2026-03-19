@@ -1,4 +1,4 @@
-import { doc, setDoc, getDoc, updateDoc } from 'firebase/firestore';
+import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import { type MonthlyBudget } from '../types';
 
