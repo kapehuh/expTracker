@@ -9,7 +9,7 @@ function App() {
   const { currentUser } = useAuth();
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/expTracker">
       <Routes>
         {/* Если пользователь уже залогинен, с главной (/login) отправляем на /dashboard */}
         <Route path="/login" element={

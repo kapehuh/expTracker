@@ -11,7 +11,7 @@ const firebaseConfig = {
   messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
   appId: import.meta.env.VITE_APP_ID
 }
-console.log('Firebase config:', firebaseConfig);
+
 // Проверка, что переменные загружены
 if (!firebaseConfig.apiKey) {
   console.error('Firebase configuration is missing. Check your .env file.');
