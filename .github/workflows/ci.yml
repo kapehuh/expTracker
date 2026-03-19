@@ -1,5 +1,5 @@
 # .github/workflows/deploy.yml
-name: Deploy to Firebase Hosting
+name: Deploy
 
 on:
   push:
@@ -33,9 +33,9 @@ jobs:
         # На этом этапе переменные окружения уже будут доступны
         run: npm run build
 
-      # - name: Deploy to Firebase
-      #   uses: w9jds/firebase-action@master
-      #   with:
-      #     args: deploy --only hosting
-      #   env:
-      #     GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }} # или FIREBASE_TOKEN
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages
