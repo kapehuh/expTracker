@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../hooks/useAuth';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import { auth } from '../firebase';
 import { getBudget, setBudget } from '../services/budgetService';
-import { addExpense, getExpensesForMonth, getRecentExpenses, updateExpense, deleteExpense } from '../services/expenseService';
+import {
+  addExpense,
+  getExpensesForMonth,
+  getRecentExpenses,
+  updateExpense,
+  deleteExpense,
+} from '../services/expenseService';
 import { type Category, type Expense, type MonthlyBudget, categoryLabels } from '../types';
 import ExpenseForm from '../components/ExpenseForm';
 import BudgetModal from '../components/BudgetModal';
@@ -74,13 +80,16 @@ const Dashboard: React.FC = () => {
 
   // Функция для получения суммы расходов по категории
   const getCategoryTotal = (category: Category): number => {
-    return expenses
-      .filter(e => e.category === category)
-      .reduce((sum, e) => sum + e.amount, 0);
+    return expenses.filter((e) => e.category === category).reduce((sum, e) => sum + e.amount, 0);
   };
 
   // Добавление расхода
-  const handleAddExpense = async (data: { amount: number; category: Category; description: string; date: string }) => {
+  const handleAddExpense = async (data: {
+    amount: number;
+    category: Category;
+    description: string;
+    date: string;
+  }) => {
     if (!currentUser) return;
     try {
       await addExpense({
@@ -98,7 +107,12 @@ const Dashboard: React.FC = () => {
   };
 
   // Редактирование расхода
-  const handleUpdateExpense = async (data: { amount: number; category: Category; description: string; date: string }) => {
+  const handleUpdateExpense = async (data: {
+    amount: number;
+    category: Category;
+    description: string;
+    date: string;
+  }) => {
     if (!currentUser) return;
     if (!editingExpense) return;
     try {
@@ -173,9 +187,15 @@ const Dashboard: React.FC = () => {
       <section className={styles.budgetSection}>
         <h2>Бюджет на {currentYearMonth.replace('-', '.')}</h2>
         <div className={styles.budgetInfo}>
-          <p><strong>Доход:</strong> {budget?.income} ₽</p>
-          <p><strong>Остаток:</strong> {remaining} ₽</p>
-          <p><strong>Накопления (всего):</strong> 0 ₽ (пока не реализовано)</p>
+          <p>
+            <strong>Доход:</strong> {budget?.income} ₽
+          </p>
+          <p>
+            <strong>Остаток:</strong> {remaining} ₽
+          </p>
+          <p>
+            <strong>Накопления (всего):</strong> 0 ₽ (пока не реализовано)
+          </p>
           <button onClick={() => setShowBudgetModal(true)}>✎ Редактировать бюджет</button>
         </div>
         <div className={styles.categoryPlans}>
@@ -201,17 +221,34 @@ const Dashboard: React.FC = () => {
         ) : (
           <table className={styles.expensesTable}>
             <thead>
-              <tr><th>Дата</th><th>Категория</th><th>Сумма</th><th>Описание</th><th>Действия</th></tr>
+              <tr>
+                <th>Дата</th>
+                <th>Категория</th>
+                <th>Сумма</th>
+                <th>Описание</th>
+                <th>Действия</th>
+              </tr>
             </thead>
             <tbody>
-              {recentExpenses.map(exp => (
-                <tr key={exp.id} onClick={() => setEditingExpense(exp)} style={{ cursor: 'pointer' }}>
+              {recentExpenses.map((exp) => (
+                <tr
+                  key={exp.id}
+                  onClick={() => setEditingExpense(exp)}
+                  style={{ cursor: 'pointer' }}
+                >
                   <td>{exp.date}</td>
                   <td>{categoryLabels[exp.category]}</td>
                   <td>{exp.amount} ₽</td>
                   <td>{exp.description || '—'}</td>
                   <td>
-                    <button onClick={(e) => { e.stopPropagation(); handleDeleteExpense(exp.id); }}>🗑️</button>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleDeleteExpense(exp.id);
+                      }}
+                    >
+                      🗑️
+                    </button>
                   </td>
                 </tr>
               ))}

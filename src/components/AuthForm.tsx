@@ -18,8 +18,10 @@ const AuthForm: React.FC = () => {
 
   // Обработчики изменений полей
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value);
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value);
-  const handleConfirmPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => setConfirmPassword(e.target.value);
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setPassword(e.target.value);
+  const handleConfirmPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setConfirmPassword(e.target.value);
 
   // Переключение режима
   const toggleMode = () => {
@@ -131,11 +133,16 @@ const AuthForm: React.FC = () => {
           </div>
         )}
         {error && <p className={styles.error}>{error}</p>}
-        <button type="submit" className={styles.button}>{isLogin ? 'Войти' : 'Зарегистрироваться'}</button>
+        <button type="submit" className={styles.button}>
+          {isLogin ? 'Войти' : 'Зарегистрироваться'}
+        </button>
       </form>
       <p>
         {isLogin ? 'Нет аккаунта? ' : 'Уже есть аккаунт? '}
-        <button onClick={toggleMode} style={{ background: 'none', border: 'none', color: 'blue', cursor: 'pointer' }}>
+        <button
+          onClick={toggleMode}
+          style={{ background: 'none', border: 'none', color: 'blue', cursor: 'pointer' }}
+        >
           {isLogin ? 'Зарегистрироваться' : 'Войти'}
         </button>
       </p>

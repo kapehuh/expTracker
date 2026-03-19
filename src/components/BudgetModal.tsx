@@ -8,11 +8,16 @@ interface BudgetModalProps {
   onClose: () => void;
 }
 
-const BudgetModal: React.FC<BudgetModalProps> = ({ initialIncome, initialPlanned, onSave, onClose }) => {
+const BudgetModal: React.FC<BudgetModalProps> = ({
+  initialIncome,
+  initialPlanned,
+  onSave,
+  onClose,
+}) => {
   const [income, setIncome] = useState(initialIncome.toString());
   const [planned, setPlanned] = useState<Record<Category, string>>(() => {
-    const obj: any = {};
-    (Object.keys(initialPlanned) as Category[]).forEach(key => {
+    const obj = {} as Record<Category, string>;
+    (Object.keys(initialPlanned) as Category[]).forEach((key) => {
       obj[key] = initialPlanned[key].toString();
     });
     return obj;

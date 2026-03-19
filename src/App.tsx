@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { useAuth } from './context/AuthContext';
+import { useAuth } from './hooks/useAuth';
 import LoginPage from './pages/LoginPage';
 import Dashboard from './pages/Dashboard';
 import Reports from './pages/Reports';
@@ -12,25 +12,32 @@ function App() {
     <BrowserRouter basename="/expTracker">
       <Routes>
         {/* Если пользователь уже залогинен, с главной (/login) отправляем на /dashboard */}
-        <Route path="/login" element={
-          currentUser ? <Navigate to="/dashboard" replace /> : <LoginPage />
-        } />
+        <Route
+          path="/login"
+          element={currentUser ? <Navigate to="/dashboard" replace /> : <LoginPage />}
+        />
         {/* Защищённый маршрут */}
-        <Route path="/dashboard" element={
-          <PrivateRoute>
-            <Dashboard />
-          </PrivateRoute>
-        } />
+        <Route
+          path="/dashboard"
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        />
         {/* Редирект с корня на логин (или дашборд, если уже залогинен) */}
-        <Route path="/" element={<Navigate to={currentUser ? "/dashboard" : "/login"} replace />} />
-        <Route path="/reports" element={
-        <PrivateRoute>
-          <Reports />
-        </PrivateRoute>
-      } />
+        <Route path="/" element={<Navigate to={currentUser ? '/dashboard' : '/login'} replace />} />
+        <Route
+          path="/reports"
+          element={
+            <PrivateRoute>
+              <Reports />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
 }
 
-export default App
+export default App;

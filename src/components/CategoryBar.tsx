@@ -24,12 +24,7 @@ const CategoryBar: React.FC<CategoryBarProps> = ({ category, planned, actual }) 
         {/* Серый фон — весь план (всегда отображается, даже если план 0 — нулевая ширина) */}
         <div className={styles.planBar} style={{ width: hasPlan ? '100%' : '0%' }}>
           {/* Основная часть (факт в пределах плана) */}
-          {fillWidth > 0 && (
-            <div
-              className={styles.actualBar}
-              style={{ width: `${fillWidth}%` }}
-            />
-          )}
+          {fillWidth > 0 && <div className={styles.actualBar} style={{ width: `${fillWidth}%` }} />}
           {/* Превышение (если есть) */}
           {excessWidth > 0 && (
             <div

@@ -1,6 +1,15 @@
-import { 
-  collection, addDoc, updateDoc, deleteDoc, doc, 
-  query, where, getDocs, orderBy, Timestamp, limit 
+import {
+  collection,
+  addDoc,
+  updateDoc,
+  deleteDoc,
+  doc,
+  query,
+  where,
+  getDocs,
+  orderBy,
+  Timestamp,
+  limit,
 } from 'firebase/firestore';
 import { db } from '../firebase';
 import { type Expense } from '../types';
@@ -16,7 +25,10 @@ export const addExpense = async (expense: Omit<Expense, 'id' | 'createdAt'>) => 
 };
 
 // Получить расходы пользователя за месяц (по дате)
-export const getExpensesForMonth = async (userId: string, yearMonth: string): Promise<Expense[]> => {
+export const getExpensesForMonth = async (
+  userId: string,
+  yearMonth: string
+): Promise<Expense[]> => {
   const colRef = collection(db, 'expenses');
   // Преобразуем yearMonth в начальную и конечную даты
   const startDate = `${yearMonth}-01`;
@@ -29,11 +41,14 @@ export const getExpensesForMonth = async (userId: string, yearMonth: string): Pr
     orderBy('date', 'desc')
   );
   const querySnapshot = await getDocs(q);
-  return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Expense));
+  return querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }) as Expense);
 };
 
 // Получить последние N расходов (без ограничения по месяцу)
-export const getRecentExpenses = async (userId: string, limitCount: number = 7): Promise<Expense[]> => {
+export const getRecentExpenses = async (
+  userId: string,
+  limitCount: number = 7
+): Promise<Expense[]> => {
   const colRef = collection(db, 'expenses');
   const q = query(
     colRef,
@@ -42,7 +57,7 @@ export const getRecentExpenses = async (userId: string, limitCount: number = 7):
     limit(limitCount)
   );
   const querySnapshot = await getDocs(q);
-  return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Expense));
+  return querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }) as Expense);
 };
 
 // Обновить расход

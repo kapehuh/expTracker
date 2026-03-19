@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import { getBudget } from '../services/budgetService';
 import { getExpensesForMonth } from '../services/expenseService';
@@ -64,7 +64,7 @@ const Reports: React.FC = () => {
     services: 0,
     other: 0,
   };
-  expenses.forEach(exp => {
+  expenses.forEach((exp) => {
     actualByCategory[exp.category] += exp.amount;
   });
 
@@ -85,7 +85,7 @@ const Reports: React.FC = () => {
       </div>
 
       <div className={styles.chartSection}>
-        {categories.map(cat => (
+        {categories.map((cat) => (
           <CategoryBar
             key={cat}
             category={cat}

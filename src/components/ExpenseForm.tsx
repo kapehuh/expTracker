@@ -8,7 +8,12 @@ interface ExpenseFormProps {
     description: string;
     date: string;
   };
-  onSubmit: (data: { amount: number; category: Category; description: string; date: string }) => void;
+  onSubmit: (data: {
+    amount: number;
+    category: Category;
+    description: string;
+    date: string;
+  }) => void;
   onCancel?: () => void;
 }
 
@@ -50,17 +55,15 @@ const ExpenseForm: React.FC<ExpenseFormProps> = ({ initialData, onSubmit, onCanc
         <label>Категория:</label>
         <select value={category} onChange={(e) => setCategory(e.target.value as Category)}>
           {(Object.entries(categoryLabels) as [Category, string][]).map(([key, label]) => (
-            <option key={key} value={key}>{label}</option>
+            <option key={key} value={key}>
+              {label}
+            </option>
           ))}
         </select>
       </div>
       <div>
         <label>Описание (необязательно):</label>
-        <input
-          type="text"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
+        <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
       </div>
       <div>
         <label>Дата:</label>
@@ -73,7 +76,11 @@ const ExpenseForm: React.FC<ExpenseFormProps> = ({ initialData, onSubmit, onCanc
       </div>
       <div className="form-actions">
         <button type="submit">Сохранить</button>
-        {onCancel && <button type="button" onClick={onCancel}>Отмена</button>}
+        {onCancel && (
+          <button type="button" onClick={onCancel}>
+            Отмена
+          </button>
+        )}
       </div>
     </form>
   );
