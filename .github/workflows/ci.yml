@@ -8,6 +8,10 @@ on:
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write   # разрешение на запись в репозиторий (для пуша в gh-pages)
+      pages: write      # если используете GitHub Pages
+      id-token: write   # для деплоя Pages
     # Передаем секреты как переменные окружения для всей job
     env:
       VITE_API_KEY: ${{ secrets.VITE_API_KEY }}
