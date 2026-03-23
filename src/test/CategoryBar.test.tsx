@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import CategoryBar from './CategoryBar';
+import CategoryBar from '../components/CategoryBar';
 import { categoryLabels } from '../types';
 
 describe('CategoryBar', () => {

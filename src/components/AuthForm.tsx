@@ -5,7 +5,7 @@ import {
   createUserWithEmailAndPassword,
   type AuthError,
 } from 'firebase/auth';
-import styles from './AuthForm.module.css';
+import styles from '../css/AuthForm.module.css';
 import { useNavigate } from 'react-router-dom';
 
 const AuthForm: React.FC = () => {
@@ -108,6 +108,7 @@ const AuthForm: React.FC = () => {
             value={email}
             onChange={handleEmailChange}
             required
+            data-testid="email-input"
           />
         </div>
         <div className={styles.field}>
@@ -118,6 +119,7 @@ const AuthForm: React.FC = () => {
             value={password}
             onChange={handlePasswordChange}
             required
+            data-testid="password-input"
           />
         </div>
         {!isLogin && (
@@ -129,6 +131,7 @@ const AuthForm: React.FC = () => {
               value={confirmPassword}
               onChange={handleConfirmPasswordChange}
               required
+              data-testid="confirm-password-input"
             />
           </div>
         )}

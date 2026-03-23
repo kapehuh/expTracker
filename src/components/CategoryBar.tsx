@@ -1,6 +1,6 @@
 import React from 'react';
 import { categoryLabels } from '../types';
-import styles from './CategoryBar.module.css';
+import styles from '../css/CategoryBar.module.css';
 
 interface CategoryBarProps {
   category: keyof typeof categoryLabels;

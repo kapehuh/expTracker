@@ -12,11 +12,17 @@ export default defineConfig({
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
       thresholds: {
-        lines: 0,
-        functions: 0,
-        branches: 0,
-        statements: 0,
+        lines: 70,
+        functions: 70,
+        branches: 70,
+        statements: 70,
       },
+      exclude: [
+        '**/*.module.css',
+        '**/*.css',
+        'types.ts',
+        'firebase.ts'
+      ],
     },
   },
 });
