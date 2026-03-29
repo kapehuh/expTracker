@@ -9,5 +9,16 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      (function() {
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect !== location.href) {
+          // Извлекаем путь из сохранённого URL (например, /login)
+          var path = redirect.replace(location.origin, '');
+          history.replaceState(null, null, path);
+        }
+      })();
+    </script>
   </body>
 </html>

@@ -4,6 +4,6 @@ import babel from '@rolldown/plugin-babel';
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/expTracker/',
+  base: process.env.NODE_ENV === 'production' ? '/expTracker/' : '/',
   plugins: [react(), babel({ presets: [reactCompilerPreset()] })],
 });
