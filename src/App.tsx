@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useAuth } from './hooks/useAuth';
 import LoginPage from './pages/LoginPage';
 import Dashboard from './pages/Dashboard';
@@ -9,7 +9,7 @@ function App() {
   const { currentUser } = useAuth();
 
   return (
-    <BrowserRouter basename="/expTracker">
+    <HashRouter basename="/expTracker">
       <Routes>
         {/* Если пользователь уже залогинен, с главной (/login) отправляем на /dashboard */}
         <Route
@@ -36,7 +36,7 @@ function App() {
           }
         />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
