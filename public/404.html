@@ -4,10 +4,14 @@
     <meta charset="utf-8" />
     <title>Перенаправление...</title>
     <script>
-      // Сохраняем запрошенный URL в sessionStorage
-      sessionStorage.redirect = location.href;
+      // Сохраняем полный путь, включая подпапку репозитория
+      var redirect = location.href;
+      // Извлекаем базовый путь (например, /expTracker/)
+      var basePath = location.pathname.split('/').slice(0, 2).join('/') + '/';
+      sessionStorage.setItem('redirect', redirect);
+      // Редирект на index.html внутри базового пути
+      location.replace(basePath + 'index.html');
     </script>
-    <meta http-equiv="refresh" content="0;URL=/" />
   </head>
   <body></body>
 </html>

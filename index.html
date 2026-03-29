@@ -11,12 +11,14 @@
     <script type="module" src="/src/main.tsx"></script>
     <script>
       (function() {
-        var redirect = sessionStorage.redirect;
-        delete sessionStorage.redirect;
-        if (redirect && redirect !== location.href) {
-          // Извлекаем путь из сохранённого URL (например, /login)
-          var path = redirect.replace(location.origin, '');
-          history.replaceState(null, null, path);
+        var redirect = sessionStorage.getItem('redirect');
+        if (redirect) {
+          sessionStorage.removeItem('redirect');
+          // Извлекаем путь и query
+          var url = new URL(redirect);
+          var fullPath = url.pathname + url.search + url.hash;
+          // Заменяем историю, не перезагружая страницу
+          history.replaceState(null, '', fullPath);
         }
       })();
     </script>
